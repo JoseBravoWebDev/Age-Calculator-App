@@ -1,0 +1,321 @@
+/* General Reset */
+
+/* https://piccalil.li/blog/a-modern-css-reset */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  --webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   line-height: 1;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* End General Reset */
+
+/* General Settings */
+
+:root {
+  /* Primary Colors */
+  --primary: hsl(259, 100%, 65%);
+  --secondary: hsl(0, 100%, 67%);
+
+  /* Neutral Colors */
+  --neutral-1: hsl(0, 0%, 100%);
+  --neutral-2: hsl(0, 0%, 94%);
+  --neutral-3: hsl(0, 0%, 86%);
+  --neutral-4: hsl(0, 1%, 44%);
+  --neutral-5: hsl(0, 0%, 8%);
+
+  /* Fonts Family */
+  --ff-body: 'Poppins', sans-serif;
+
+  /* Fonts Weight */
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
+
+  /* Font Size */
+  --fs-body: 2.5rem;
+}
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  clip-path: inset(50%) !important;
+  -webkit-clip-path: inset(50%) !important;
+  height: 1px !important;
+  width: 1px !important;
+  position: absolute !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  padding: 0 !important;
+  margin: -1px !important;
+}
+
+/* End General Settings */
+
+/* General Styling */
+
+body {
+  background: var(--neutral-2);
+  font-family: var(--ff-body);
+  font-weight: var(--fw-bold);
+  color: var(--neutral-5);
+  font-size: var(--fs-body);
+
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+
+/* End General Styling */
+
+/* Section Style */
+.container {
+  width: 550px;
+  background: var(--neutral-1);
+  padding: 2rem;
+  border-radius: 20px 20px 150px 20px;
+
+  display: grid;
+  gap: 1.5rem;
+}
+
+form {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.input-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.input-label {
+  flex-basis: 0;
+  font-size: 1rem;
+
+  display: grid;
+  gap: 0.25rem;
+}
+
+.input-label label {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+input {
+  max-width: 100px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--neutral-3);
+  border-radius: 5px;
+  outline: none;
+  font-weight: var(--fw-extra-bold);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+  color: var(--neutral-3);
+}
+
+.error-text {
+  font-size: 0.5rem;
+  font-weight: var(--fw-regular);
+  font-style: italic;
+  color: var(--secondary);
+}
+
+.line {
+  border-top: 1px solid var(--neutral-2);
+  position: relative;
+}
+
+.calculate-btn {
+  position: absolute;
+  top: -30px;
+  right: 0;
+
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border: none;
+  border-radius: 100%;
+  background: url('assets/images/icon-arrow.svg'), var(--primary);
+  background-size: 35px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: 0.25s ease;
+}
+
+.calculate-btn:hover {
+  background: url('assets/images/icon-arrow.svg'), var(--neutral-5);
+  background-size: 35px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.results {
+  font-size: 3rem;
+  font-weight: var(--fw-extra-bold);
+  font-style: italic;
+}
+
+.results span {
+  color: var(--primary);
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    width: 100%;
+  }
+
+  .input-container {
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  input {
+    max-width: 80px;
+  }
+
+  .results {
+    font-size: 2.5rem;
+  }
+
+  .calculate-btn {
+    width: 50px;
+    height: 50px;
+    left: calc(50% - 25px);
+    top: calc(50% - 25px);
+    background-size: 25px;
+  }
+
+  .calculate-btn:hover {
+    background-size: 25px;
+  }
+}
+
+/* End Section Style */
+
+/* Animations */ 
+
+.overflow-cntrl {
+  overflow: hidden;
+}
+
+.comeInUp {
+  opacity: 0;
+  transform: translateY(100%);
+  animation: comeInUp 0.5s ease forwards;
+}
+
+@keyframes comeInUp {
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.comeInRight {
+  transform: translateX(100%);
+  opacity: 0;
+  animation: comeInRight 0.5s ease forwards 0.5s;
+}
+
+@keyframes comeInRight {
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+.fadeIn {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards 1.25s;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+/* Animations End */
