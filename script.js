@@ -21,9 +21,9 @@ const calculateBtn = document.querySelector('.calculate-btn');
 ////////////////////////////////////////////////////////////////////////////////////
 
 const limitInputLength = (input, maxLength)=> {
-  	if (input.value.length > maxLength) {
-    	input.value = input.value.slice(0, maxLength);
-  	}
+  if (input.value.length > maxLength) {
+    input.value = input.value.slice(0, maxLength);
+  }
 }
 
 day.addEventListener("input",(e)=> {
@@ -62,25 +62,25 @@ const calculateAge = ()=> {
 	const dayValue = day.value;
 	const monthValue = month.value;
 	const yearValue = year.value;
-
-  	let years = currentYear - parseInt(yearValue);
+  
+  let years = currentYear - parseInt(yearValue);
  	let months = currentMonth - parseInt(monthValue);
-  	let days = currentDay - parseInt(dayValue);
+  let days = currentDay - parseInt(dayValue);
 
-  	if (months < 0 || (months === 0 && days < 0)) {
-    	years--;
-    	months += 12;
-  	}
+  if (months < 0 || (months === 0 && days < 0)) {
+   	years--;
+   	months += 12;
+ 	}
 
-  	if (days < 0) {
-    	const prevMonth = new Date(currentYear, currentMonth - 1, 0);
-    	days += prevMonth.getDate();
-    	months--;
-  	}
+  if (days < 0) {
+    const prevMonth = new Date(currentYear, currentMonth - 1, 0);
+    days += prevMonth.getDate();
+    months--;
+  }
 
-  	yearsResult.textContent = `${years}`;
-  	monthsResult.textContent = `${months}`;
-  	daysResult.textContent = `${days}`;
+  yearsResult.textContent = `${years}`;
+  monthsResult.textContent = `${months}`;
+  daysResult.textContent = `${days}`;
 };
 
 const validateDate = ()=> {
@@ -92,30 +92,35 @@ const validateDate = ()=> {
 		errorElement.textContent = ``;
 	});
 
-  	if (day.value == "") {
-    	showError(day,`can't be empty`);
-    	valid = false;
-  	} else if (day.value < 1 || day.value > maxDay || isNaN(day.value)) {
-    	showError(day,`must be between 1 and ${maxDay}`);
-    	valid = false;
-  	}
+  if (day.value >= currentDay && month.value >= currentMonth && year.value >= currentYear) {
+  	showError(year,`must be a valid date`);
+   	valid = false;
+  }
+
+  if (day.value == "") {
+    showError(day,`can't be empty`);
+    valid = false;
+  } else if (day.value < 1 || day.value > maxDay || isNaN(day.value)) {
+    showError(day,`must be between 1 and ${maxDay}`);
+    valid = false;
+  }
 
 	if (month.value == "") {
-    	showError(month,`can't be empty`);
-    	valid = false;
-  	} else if (month.value < 1 || month.value > 12 || isNaN(month.value)) {
-  		showError(month,`must be between 1 and 12`);
-    	valid = false;
-  	}
+    showError(month,`can't be empty`);
+   	valid = false;
+  } else if (month.value < 1 || month.value > 12 || isNaN(month.value)) {
+  	showError(month,`must be between 1 and 12`);
+   	valid = false;
+  }
 
 	if (year.value == "") {
-    	showError(year,`can't be empty`);
-    	valid = false;
-  	} else if (year.value > currentYear || year.value < 1900 || isNaN(year.value)) {
+    showError(year,`can't be empty`);
+    valid = false;
+  } else if (year.value > currentYear || year.value < 1900 || isNaN(year.value)) {
 		showError(year,`must be between 1900 and ${currentYear}`);
-    	valid = false;
-  	}
-  	return valid;
+   	valid = false;
+  }
+  return valid;
 };
 
 calculateBtn.addEventListener('click',(e)=> {
